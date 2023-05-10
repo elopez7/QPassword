@@ -1,6 +1,7 @@
 #include "passwordgenerator.h"
 #include <random>
-#include <QDebug>
+#include <QGuiApplication>
+#include <QClipboard>
 
 PasswordGenerator::PasswordGenerator(QObject *parent)
     : QObject{parent}
@@ -71,6 +72,12 @@ void PasswordGenerator::setPasswordLength(int newPasswordLength)
 void PasswordGenerator::printPassword()
 {
     makeAlphabet();
+}
+
+void PasswordGenerator::copyToClipboard()
+{
+    QClipboard *clipboard{QGuiApplication::clipboard()};
+    clipboard->setText(m_generatedPassword);
 }
 
 void PasswordGenerator::makeAlphabet()

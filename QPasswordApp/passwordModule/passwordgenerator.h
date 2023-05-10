@@ -49,6 +49,7 @@ public:
 
 
     Q_INVOKABLE void printPassword();
+    Q_INVOKABLE void copyToClipboard();
 
     QBindable<QString> bindablePassword() {return &m_generatedPassword;}
     QBindable<bool> bindableLowerCase() {return &m_useLowerCase;}

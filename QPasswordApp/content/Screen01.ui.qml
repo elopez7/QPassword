@@ -17,7 +17,7 @@ Item {
     width: Constants.width
     height: Constants.height
 
-    PasswordComponent{
+    PasswordComponent {
         id: passwordComponent
         passwordLength: passwordLengthSlider.value
         useUpperCase: uppercaseSwitch.checked
@@ -25,7 +25,6 @@ Item {
         useNumbers: numbersSwitch.checked
         useSpecialCharacters: symbolsSwitch.checked
     }
-
 
     ColumnLayout {
         id: appLayout
@@ -122,20 +121,35 @@ Item {
             }
         }
 
-        Button {
-            id: generatePasswordButton
-            text: qsTr("Generate Password")
-            font.pixelSize: 48
-            Layout.rightMargin: 128
-            Layout.leftMargin: 128
-            Layout.minimumHeight: 128
-            Layout.maximumHeight: 128
+        RowLayout {
+            id: buttonsLayout
+            spacing: 32
             Layout.fillWidth: true
+            Layout.fillHeight: true
+            Button {
+                id: generatePasswordButton
+                text: qsTr("Generate Password")
+                font.pixelSize: 48
+                Layout.fillWidth: true
 
-            Connections{
-                function onClicked(){
-                    passwordComponent.printPassword()
-                    passwordText.text = passwordComponent.generatedPassword
+                Connections {
+                    function onClicked() {
+                        passwordComponent.printPassword()
+                        passwordText.text = passwordComponent.generatedPassword
+                    }
+                }
+            }
+
+            Button {
+                id: copyPasswordButton
+                text: qsTr("Copy")
+                font.pixelSize: 48
+                Layout.fillWidth: true
+
+                Connections {
+                    function onClicked() {
+                        passwordComponent.copyToClipboard()
+                    }
                 }
             }
         }
